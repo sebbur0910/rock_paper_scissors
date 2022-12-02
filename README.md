@@ -1,4 +1,6 @@
 # rock_paper_scissors
 Rock paper scissors school project
 
-ooga booga wooga
+##Files include:
+- game_objects
+- test_game_objects
