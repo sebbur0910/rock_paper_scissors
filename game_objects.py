@@ -257,3 +257,7 @@ class Game:
             return f"{self.players[1].name} is the winner"
         else:
             return "It is a draw"
+
+
+# Adding a note to test Git push
+useless_variable = 15
