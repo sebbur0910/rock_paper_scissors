@@ -259,5 +259,4 @@ class Game:
             return "It is a draw"
 
 
-# Adding a note to test Git push
-useless_variable = 15
+
