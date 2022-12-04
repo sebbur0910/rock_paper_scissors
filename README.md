@@ -10,14 +10,3 @@ Rock paper scissors school project
 
 
 
-
-
-
-
-
-
-
-
-
-
-ooga booga wooga
