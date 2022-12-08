@@ -75,11 +75,12 @@ class PlayerObject:
         return PlayerObject(random.choice(cls.allowable_objects))
 
     @classmethod
-    def set_object_rules(cls, allowable_objects=None, win_dict=None):
+    def set_object_rules(cls, allowable_objects=RPSLS_OBJECTS, win_dict=RPSLS_WIN_DICT):
         """
         Sets the allowable objects and the win_dict for the class
         """
-        # Leave this for now!
+        cls.allowable_objects = allowable_objects
+        cls.win_dict = win_dict
         ...
 
     def __eq__(self, other):
@@ -184,7 +185,7 @@ class Game:
             the PlayerObject for the round winner (None if no winner)
     """
 
-    def __init__(self, allowable_objects=None, win_dict=None, current_round=1, max_rounds=0, round_result=None,
+    def __init__(self, allowable_objects=None, win_dict=None, current_round=0, max_rounds=0, round_result=None,
                  round_winner=None, players=[]):
         if allowable_objects is None:
             allowable_objects = RPSLS_OBJECTS
@@ -247,7 +248,7 @@ class Game:
 
     def report_score(self):
         """ Returns a string with the current scores """
-        return f"After {self.current_round} rounds:\n{self.players[0].name} has scored {self.players[0].score}\n{self.players[1].name} has scored {self.players[1].score} "
+        return f"After {self.current_round} rounds:\n{self.players[0].name} has scored {self.players[0].score}\n{self.players[1].name} has scored {self.players[1].score}"
 
     def report_winner(self):
         """ Returns a message with the overall winner """
