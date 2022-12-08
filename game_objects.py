@@ -185,7 +185,7 @@ class Game:
             the PlayerObject for the round winner (None if no winner)
     """
 
-    def __init__(self, allowable_objects=None, win_dict=None, current_round=0, max_rounds=0, round_result=None,
+    def __init__(self, allowable_objects=None, win_dict=None, current_round=1, max_rounds=0, round_result=None,
                  round_winner=None, players=[]):
         if allowable_objects is None:
             allowable_objects = RPSLS_OBJECTS
@@ -233,7 +233,7 @@ class Game:
 
     def is_finished(self):
         """ Checks if game is finished """
-        return self.current_round == self.max_rounds
+        return self.current_round > self.max_rounds
 
     def reset(self):
         """ Resets the whole game, setting current round to 0 and player scores to 0"""
@@ -244,7 +244,10 @@ class Game:
 
     def report_round(self):
         """ returns a message reporting on what the players played and what the result of the round was """
-        return f"{self.players[0].name} chose '{self.players[0].current_object.name}'.\n{self.players[1].name} chose '{self.players[1].current_object.name}'.\n{self.round_winner.name} won this round"
+        if self.round_winner:
+            return f"{self.players[0].name} chose '{self.players[0].current_object.name}'.\n{self.players[1].name} chose '{self.players[1].current_object.name}'.\n{self.round_winner.name} won this round"
+        else:
+            return f"{self.players[0].name} chose '{self.players[0].current_object.name}'.\n{self.players[1].name} chose '{self.players[1].current_object.name}'.\nNobody won this round"
 
     def report_score(self):
         """ Returns a string with the current scores """

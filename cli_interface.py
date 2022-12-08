@@ -9,7 +9,7 @@ class CLI_Interface():
         print("Rock Paper Scissors Lizard Spock!")
         num_players = 0
         while not (num_players == 1 or num_players == 2):
-            num_players = int(input("How many players would you like to have?"))
+            num_players = int(input("How many players would you like to have? "))
             if num_players != 1 and num_players != 2:
                 print("Must have either one or two players")
             else:
@@ -26,12 +26,11 @@ class CLI_Interface():
     def get_choices(self):
         for player in self.game.players:
             if player.name != "Computer":
-                chosen = input(f"{player.name} please choose 'rock', 'paper', 'scissors', 'lizard' or 'spock'").lower()
-                if chosen not in obj.RPSLS_OBJECTS:
+                chosen = input(f"{player.name} please choose 'rock', 'paper', 'scissors', 'lizard' or 'spock': ").lower()
+                while chosen not in obj.RPSLS_OBJECTS:
                     print("Invalid user choice")
-                    chosen = input(f"{player.name} please choose 'rock', 'paper', 'scissors', 'lizard' or 'spock'").lower()
-                else:
-                    player.choose_object(chosen)
+                    chosen = input(f"{player.name} please choose 'rock', 'paper', 'scissors', 'lizard' or 'spock': ").lower()
+                player.choose_object(chosen)
             else:
                 player.choose_object()
 
@@ -39,8 +38,8 @@ class CLI_Interface():
         while not self.game.is_finished():
             self.get_choices()
             self.game.find_winner()
-            print(self.game.report_round())
-            print(self.game.report_score())
+            print("\n\n"+self.game.report_round()+"\n\n")
+            print(self.game.report_score()+"\n\n")
             self.game.next_round()
         print("Game over")
         print(self.game.report_winner())
