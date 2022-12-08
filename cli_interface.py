@@ -18,7 +18,6 @@ class CLI_Interface():
                     self.game.add_human_player(input("Please enter the name of the first human player: "))
                 else:
                     self.game.add_computer_player()
-        print(self.game.players)
         self.input_max_rounds()
 
     def input_max_rounds(self):
@@ -37,10 +36,12 @@ class CLI_Interface():
                 player.choose_object()
 
     def run_game(self):
-        while self.game.is_finished:
+        while not self.game.is_finished():
             self.get_choices()
+            self.game.find_winner()
             print(self.game.report_round())
             print(self.game.report_score())
+            self.game.next_round()
         print("Game over")
         print(self.game.report_winner())
 
