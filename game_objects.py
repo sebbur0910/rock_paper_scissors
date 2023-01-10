@@ -237,10 +237,8 @@ class Game:
 
     def reset(self):
         """ Resets the whole game, setting current round to 0 and player scores to 0"""
-        self.current_round = 0
-        for player in self.players:
-            player.score = 0
-            player.current_object = None
+        self.current_round = 1
+        self.players = []
 
     def report_round(self):
         """ returns a message reporting on what the players played and what the result of the round was """
