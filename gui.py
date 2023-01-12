@@ -4,6 +4,7 @@ from functools import partial
 
 game_mode = "RPSLS"
 
+
 class GameApp(tk.Tk):
 
     def __init__(self):
@@ -168,7 +169,7 @@ class RoundResults(tk.Frame):
                                          text="Round is a draw!",
                                          padx=10,
                                          pady=25,
-                                         font=("Arial",13),
+                                         font=("Arial", 13),
                                          background="blue")
         self.score_label = tk.Label(self,
                                     text=self.controller.game.report_score(),
