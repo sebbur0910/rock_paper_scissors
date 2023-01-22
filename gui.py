@@ -19,7 +19,8 @@ class GameApp(tk.Tk):
         self.playernum = 0
         self.title_text = tk.Label(self,
                                    text=" ".join([i for i in self.object_set]),
-                                   font=("Arial", 12),
+                                   foreground="white",
+                                   font=("Arial", 11),
                                    background="blue")
         self.title_text.pack()
 
@@ -46,12 +47,16 @@ class MainMenu(tk.Frame):
     def __init__(self, controller):
         super().__init__()
         self.controller = controller
+        if not self.controller.game.players:
+            self.controller.game.players = []
+        self.round_num, self.round_input_box, self.play_label, self.comp_button, self.player_button = None, None, None, None, None
 
     def set_up(self):
         self.controller.game.players = []
         self.round_num = tk.Label(self,
                                   text="Number of Rounds:",
-                                  font=("Arial", 10),
+                                  font=("Arial", 11),
+                                  foreground="white",
                                   background="blue"
                                   )
         self.config(background="blue")
@@ -61,6 +66,7 @@ class MainMenu(tk.Frame):
         self.play_label = tk.Label(self,
                                    text="Play!",
                                    font=("Arial", 20),
+                                   foreground="white",
                                    compound="center",
                                    background="blue")
 
@@ -101,12 +107,14 @@ class ActionChooser(tk.Frame):
         super().__init__()
         self.chooserplayer = chooserplayer
         self.controller = controller
+        self.playerlabel, self.roundlabel = None, None
 
     def set_up(self):
         self.config(background="blue")
         self.playerlabel = tk.Label(self,
                                     text=f"Player {self.chooserplayer}:\n\tChoose your action",
                                     font=("Arial", 20),
+                                    foreground="white",
                                     background="blue"
                                     )
         self.playerlabel.pack(side="left")
@@ -117,6 +125,7 @@ class ActionChooser(tk.Frame):
             self.button.pack(fill="x", padx=10, pady=20)
 
         self.roundlabel = tk.Label(self,
+                                   foreground="white",
                                    text=f"Round {self.controller.game.current_round} of {self.controller.game.max_rounds}",
                                    background="blue")
         self.roundlabel.pack()
@@ -145,36 +154,42 @@ class RoundResults(tk.Frame):
         super().__init__()
         self.controller = controller
         self.config(background="blue")
+        self.p_one_label, self.p_two_label, self.winner_label, self.score_label, self.advance_button = None, None, None, None, None
 
     def set_up(self):
         self.p_one_label = tk.Label(self,
                                     text=f"{self.controller.game.players[0].name} chose:\n\n{self.controller.game.players[0].current_object.name}",
                                     padx=20,
                                     pady=10,
+                                    foreground="white",
                                     background="blue")
         self.p_two_label = tk.Label(self,
                                     text=f"{self.controller.game.players[1].name} chose:\n\n{self.controller.game.players[1].current_object.name}",
                                     padx=20,
                                     pady=10,
+                                    foreground="white",
                                     background="blue")
         if self.controller.game.round_winner:
             self.winner_label = tk.Label(self,
                                          text=f"{self.controller.game.round_winner.name} wins!",
                                          padx=10,
                                          pady=25,
-                                         font=("Arial", 13),
+                                         foreground="white",
+                                         font=("Arial", 20),
                                          background="blue")
         else:
             self.winner_label = tk.Label(self,
                                          text="Round is a draw!",
                                          padx=10,
                                          pady=25,
-                                         font=("Arial", 13),
+                                         foreground="white",
+                                         font=("Arial", 20),
                                          background="blue")
         self.score_label = tk.Label(self,
                                     text=self.controller.game.report_score(),
                                     padx=10,
                                     pady=10,
+                                    foreground="white",
                                     background="blue")
         self.advance_button = tk.Button(self,
                                         text="Advance",
@@ -202,23 +217,27 @@ class GameOver(tk.Frame):
         super().__init__()
         self.controller = controller
         self.config(background="blue")
+        self.game_over_label, self.score_report, self.winner_report, self.play_again_button, self.exit_button = None, None, None, None, None
 
     def set_up(self):
         self.game_over_label = tk.Label(self,
                                         text="Game Over!",
                                         font=("Arial", 20),
                                         padx=20,
+                                        foreground="white",
                                         pady=20,
                                         background="blue")
         self.score_report = tk.Label(self,
                                      text=self.controller.report_game_string,
                                      padx=10,
                                      pady=10,
+                                     foreground="white",
                                      background="blue")
         self.winner_report = tk.Label(self,
                                       text=self.controller.game.report_winner(),
                                       padx=10,
                                       pady=10,
+                                      foreground="white",
                                       background="blue")
         self.play_again_button = tk.Button(self,
                                            text="Play again",
